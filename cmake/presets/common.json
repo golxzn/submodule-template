@@ -1,0 +1,75 @@
+{
+	"version": 5,
+	"configurePresets": [
+		{
+			"name": "pedantic",
+			"hidden": true,
+			"warnings": {
+				"dev": true,
+				"deprecated": true,
+				"uninitialized": true,
+				"unusedCli": true,
+				"systemVars": false
+			  },
+			  "errors": {
+				"dev": true,
+				"deprecated": true
+			  }
+		},
+		{
+			"name": "disable_docs",
+			"hidden": true,
+			"cacheVariables": {
+				"{prefix}_GENERATE_DOCS": "FALSE"
+			}
+		},
+		{
+			"name": "export_compile_commands",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_EXPORT_COMPILE_COMMANDS": true
+			}
+		},
+		{
+			"name": "c_standard",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_STANDARD": "17",
+				"CMAKE_C_STANDARD_REQUIRED": true
+			}
+		},
+		{
+			"name": "cpp_standard",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_CXX_STANDARD": "20",
+				"CMAKE_CXX_STANDARD_REQUIRED": true
+			}
+		},
+
+		{
+			"name": "misc",
+			"hidden": true,
+			"inherits": [ "export_compile_commands", "disable_docs", "c_standard", "cpp_standard" ]
+		},
+
+		{
+			"name": "release",
+			"hidden": true,
+			"inherits": [ "misc", "pedantic" ],
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release",
+				"{prefix}_DEFINITIONS_RELEASE": "NDEBUG;{prefix}_RELEASE"
+			}
+		},
+		{
+			"name": "debug",
+			"hidden": true,
+			"inherits": [ "misc", "pedantic" ],
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug",
+				"{prefix}_DEFINITIONS_DEBUG": "{prefix}_DEBUG"
+			}
+		}
+	]
+}
