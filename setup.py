@@ -74,9 +74,6 @@ def main():
 	if not options.submodule or not options.module: return
 	if not options.prefix: options.prefix = options.submodule.upper()
 
-	if not options.prefix.startswith('GXZN') or not options.prefix.startswith('GOLXZN'):
-		options.prefix = f'GXZN_{options.prefix}'
-
 	current_path: str = os.path.dirname(os.path.realpath(__file__))
 	files: list[str] = []
 	directories: set[str] = set()
